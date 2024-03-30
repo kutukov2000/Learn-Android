@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ImageView imageView = findViewById(R.id.imageView);
-        String imageUrl = "https://image.api.playstation.com/cdn/UP1004/NPUB31154_00/GFPKXf9DZUowXp1HxCco8FBSYeR7Pn9y.png?w=440&thumb=false";
+        String imageUrl = "http://10.0.2.2:5232/images/iphone.jpg";
         Glide.with(HomeApplication.getAppContext())
                 .load(imageUrl)
                 .apply(new RequestOptions().override(720))
