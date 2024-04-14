@@ -33,39 +33,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-//    RecyclerView rcCategories;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//
-//        rcCategories = findViewById(R.id.rcCategories);
-//        rcCategories.setHasFixedSize(true);
-//        rcCategories.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false));
-//
-//
-//        ApplicationNetwork
-//                .getInstance()
-//                .getCategoriesApi()
-//                .list()
-//                .enqueue(new Callback<List<CategoryItemDTO>>() {
-//                    @Override
-//                    public void onResponse(Call<List<CategoryItemDTO>> call, Response<List<CategoryItemDTO>> response) {
-//                        if (response.isSuccessful()) {
-//                            List<CategoryItemDTO> items = response.body();
-//                            CategoriesAdapter ca = new CategoriesAdapter(items);
-//                            rcCategories.setAdapter(ca);
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<List<CategoryItemDTO>> call, Throwable throwable) {
-//                        Log.e("--problem--", "error server");
-//                    }
-//                });
-//    }
-
+    RecyclerView rcCategories;
     private EditText editTextUsername, editTextPassword;
     private Button buttonLogin;
 
@@ -97,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
                                 if (response.isSuccessful()) {
                                     // Login successful
                                     Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                                    loadCategories();
                                 } else {
                                     // Login failed due to unexpected response from server
                                     Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
@@ -111,5 +80,32 @@ public class MainActivity extends AppCompatActivity {
                         });
             }
         });
+    }
+
+    private void loadCategories() {
+        setContentView(R.layout.activity_main);
+        rcCategories = findViewById(R.id.rcCategories);
+        rcCategories.setHasFixedSize(true);
+        rcCategories.setLayoutManager(new GridLayoutManager(MainActivity.this, 1, RecyclerView.VERTICAL, false));
+
+        ApplicationNetwork
+                .getInstance()
+                .getCategoriesApi()
+                .list()
+                .enqueue(new Callback<List<CategoryItemDTO>>() {
+                    @Override
+                    public void onResponse(Call<List<CategoryItemDTO>> call, Response<List<CategoryItemDTO>> response) {
+                        if (response.isSuccessful()) {
+                            List<CategoryItemDTO> items = response.body();
+                            CategoriesAdapter ca = new CategoriesAdapter(items);
+                            rcCategories.setAdapter(ca);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<CategoryItemDTO>> call, Throwable throwable) {
+                        Log.e("--problem--", "error server");
+                    }
+                });
     }
 }
