@@ -48,37 +48,34 @@ public class MainActivity extends AppCompatActivity {
         buttonLogin = findViewById(R.id.buttonLogin);
 
         // Set a click listener for the login button
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Retrieve entered username and password
-                String username = editTextUsername.getText().toString();
-                String password = editTextPassword.getText().toString();
+        buttonLogin.setOnClickListener(view -> {
+            // Retrieve entered username and password
+            String username = editTextUsername.getText().toString();
+            String password = editTextPassword.getText().toString();
 
-                ApplicationNetwork
-                        .getInstance()
-                        .getCategoriesApi()
-                        .login(new LoginRequest(username, password))
-                        .enqueue(new Callback<LoginResponse>() {
-                            @Override
-                            public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
-                                if (response.isSuccessful()) {
-                                    // Login successful
-                                    Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                                    loadCategories();
-                                } else {
-                                    // Login failed due to unexpected response from server
-                                    Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
-                                }
+            ApplicationNetwork
+                    .getInstance()
+                    .getCategoriesApi()
+                    .login(new LoginRequest(username, password))
+                    .enqueue(new Callback<LoginResponse>() {
+                        @Override
+                        public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
+                            if (response.isSuccessful()) {
+                                // Login successful
+                                Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                                loadCategories();
+                            } else {
+                                // Login failed due to unexpected response from server
+                                Toast.makeText(MainActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                             }
+                        }
 
-                            @Override
-                            public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
-                                t.printStackTrace();
-                                Toast.makeText(MainActivity.this, "Unexpected response from server", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-            }
+                        @Override
+                        public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
+                            t.printStackTrace();
+                            Toast.makeText(MainActivity.this, "Unexpected response from server", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         });
     }
 
