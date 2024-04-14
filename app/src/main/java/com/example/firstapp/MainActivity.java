@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 ApplicationNetwork
                         .getInstance()
                         .getCategoriesApi()
-                        .login(new LoginRequest(editTextUsername.getText().toString(), editTextPassword.getText().toString()))
+                        .login(new LoginRequest(username, password))
                         .enqueue(new Callback<LoginResponse>() {
                             @Override
                             public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
