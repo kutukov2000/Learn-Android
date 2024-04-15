@@ -6,6 +6,7 @@ import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.firstapp.authentication.login.LoginActivity;
 import com.example.firstapp.category.CategoryCreateActivity;
 
 
@@ -19,6 +20,11 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int select = item.getItemId();
+        if (select == R.id.m_login) {
+            Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
+            startActivity(intent);
+            return true;
+        }
         if (select == R.id.m_home) {
             Intent intent = new Intent(BaseActivity.this, MainActivity.class);
             startActivity(intent);

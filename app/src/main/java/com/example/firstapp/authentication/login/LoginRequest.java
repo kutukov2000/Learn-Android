@@ -1,4 +1,4 @@
-package com.example.firstapp.models;
+package com.example.firstapp.authentication.login;
 
 public class LoginRequest {
     public String email;
