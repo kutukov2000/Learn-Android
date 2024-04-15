@@ -7,7 +7,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.firstapp.R;
+import com.example.firstapp.constants.Urls;
 import com.example.firstapp.dto.category.CategoryItemDTO;
 
 import java.util.List;
@@ -34,6 +36,11 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoryCardViewHold
             CategoryItemDTO item = items.get(position);
             holder.getCategoryName().setText(item.getName());
             holder.getCategoryDescription().setText(item.getDescription());
+            if (item.getImage() != null) {
+                Glide.with(holder.itemView.getContext())
+                        .load(Urls.BASE + "/images/" + item.getImage())
+                        .into(holder.getCategoryImage());
+            }
         }
     }
 
