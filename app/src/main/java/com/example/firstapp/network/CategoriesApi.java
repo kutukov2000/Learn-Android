@@ -7,18 +7,25 @@ import com.example.firstapp.authentication.login.LoginResponse;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public interface CategoriesApi {
     @GET("/api/categories")
     public Call<List<CategoryItemDTO>> list();
 
+    @Multipart
     @POST("/api/categories")
-    public Call<CategoryItemDTO> create(@Body CategoryCreateDTO categoryCreateDTO);
-
+    Call<CategoryItemDTO> create(
+            @Part("name") String name,
+            @Part("description") String description,
+            @Part MultipartBody.Part image // Use MultipartBody.Part for image
+    );
     @POST("/api/account/login")
     public Call<LoginResponse> login(@Body LoginRequest loginRequest);
 }
