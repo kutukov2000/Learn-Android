@@ -1,6 +1,7 @@
 package com.example.firstapp.services;
 
 import com.example.firstapp.constants.Urls;
+import com.example.firstapp.interceptors.JWTInterceptor;
 import com.example.firstapp.network.CategoriesApi;
 
 import okhttp3.OkHttpClient;
@@ -18,7 +19,8 @@ public class ApplicationNetwork {
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient.Builder client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor);
+                .addInterceptor(interceptor)
+                .addInterceptor(new JWTInterceptor());
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(Urls.BASE)
