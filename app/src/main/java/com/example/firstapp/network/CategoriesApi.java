@@ -8,6 +8,7 @@ import com.example.firstapp.authentication.login.LoginResponse;
 import java.util.List;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -28,5 +29,15 @@ public interface CategoriesApi {
     );
     @POST("/api/account/login")
     public Call<LoginResponse> login(@Body LoginRequest loginRequest);
+
+    @Multipart
+    @POST("/api/account/register")
+    public Call<LoginResponse> register(
+            @Part("email") RequestBody email, //set request body type here
+            @Part("username") RequestBody username,
+            @Part("password") RequestBody password,
+            @Part("confirmPassword") RequestBody confirmPassword,
+            @Part MultipartBody.Part image // Use MultipartBody.Part for image
+    );
 }
 

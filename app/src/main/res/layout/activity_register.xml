@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".authentication.register.RegisterActivity">
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="378dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="36dp"
+        android:hint="Email"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@+id/ivSelectedImage"
+        tools:layout_editor_absoluteX="17dp" />
+
+    <EditText
+        android:id="@+id/editTextUsername"
+        android:layout_width="378dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="36dp"
+        android:hint="Username"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="378dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="36dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsername"
+        tools:layout_editor_absoluteX="17dp" />
+
+    <EditText
+        android:id="@+id/editTextConfirmPassword"
+        android:layout_width="378dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="120dp"
+        android:hint="ConfirmPassword"
+        android:inputType="textPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsername"
+        tools:layout_editor_absoluteX="17dp" />
+
+    <Button
+        android:id="@+id/buttonRegister"
+        android:layout_width="378dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="136dp"
+        android:text="Register"
+        app:layout_constraintTop_toBottomOf="@+id/editTextConfirmPassword"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/btnUploadImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Upload Image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextConfirmPassword" />
+
+    <ImageView
+        android:id="@+id/ivSelectedImage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        tools:layout_editor_absoluteX="130dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
