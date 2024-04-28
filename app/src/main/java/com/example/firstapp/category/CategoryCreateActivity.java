@@ -72,8 +72,8 @@ public class CategoryCreateActivity extends BaseActivity {
 
     public void onClickCreateCategory(View view) {
         try {
-            String name = tlCategoryName.getEditText().getText().toString().trim();
-            String description = tlCategoryDescription.getEditText().getText().toString().trim();
+            RequestBody name=RequestBody.create(MediaType.parse("text/plain"), tlCategoryName.getEditText().getText().toString());
+            RequestBody description=RequestBody.create(MediaType.parse("text/plain"), tlCategoryDescription.getEditText().getText().toString());
 
             File image = convertImageViewToFile(ivSelectedImage);
             RequestBody requestFile =

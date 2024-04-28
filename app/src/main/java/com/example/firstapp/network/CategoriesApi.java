@@ -23,8 +23,8 @@ public interface CategoriesApi {
     @Multipart
     @POST("/api/categories")
     Call<CategoryItemDTO> create(
-            @Part("name") String name,
-            @Part("description") String description,
+            @Part("name") RequestBody name,
+            @Part("description") RequestBody description,
             @Part MultipartBody.Part image // Use MultipartBody.Part for image
     );
     @POST("/api/account/login")
